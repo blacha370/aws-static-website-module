@@ -14,7 +14,7 @@ aws cloudformation deploy \
 --stack-name static-frontend-tfstate
 ```
 
-Get state bucket name and lock table name
+Get state bucket name and lock table name.
 
 ```
 aws cloudformation describe-stacks \
@@ -22,7 +22,7 @@ aws cloudformation describe-stacks \
 --query "Stacks[?StackName=='static-frontend-tfstate'].Outputs[]"
 ```
 
-Update bucket, dynamodb_table and region in `terraform.tf` file, then init terraform
+Update `bucket`, `dynamodb_table` and `region` in `terraform.tf` file, then init terraform.
 
 ```
 terraform init
