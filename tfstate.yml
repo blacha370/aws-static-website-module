@@ -34,3 +34,6 @@ Outputs:
   LockTableName:
     Description: DynamoDB lock table name
     Value: !Ref LockTable
+  Region:
+    Description: S3 bucket and DynamoDb table region
+    Value: !Ref AWS::Region
