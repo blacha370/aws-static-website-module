@@ -17,6 +17,8 @@ resource "aws_cloudfront_distribution" "static_website" {
     origin_id                = local.prefix
   }
 
+  aliases = [var.cloudfront_domain_name]
+
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
@@ -51,17 +53,18 @@ resource "aws_cloudfront_distribution" "static_website" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
   }
 
-
   price_class = "PriceClass_200"
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn      = aws_acm_certificate_validation.static_website.certificate_arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
   restrictions {

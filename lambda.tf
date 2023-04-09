@@ -5,7 +5,7 @@ data "archive_file" "basic_auth" {
   type        = "zip"
 
   source {
-    content  = templatefile(format("%s/basic-auth-lambda/index.js.tftpl", path.module), { username = local.basic_auth_user , password = local.basic_auth_password })
+    content  = templatefile(format("%s/basic-auth-lambda/index.js.tftpl", path.module), { username = local.basic_auth_user, password = local.basic_auth_password })
     filename = "index.js"
   }
 }
