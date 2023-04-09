@@ -6,10 +6,21 @@ variable "project" {
 }
 
 ####################################
+#       DNS
+####################################
+variable "dns_zone" {
+  type = string
+}
+
+variable "cloudfront_domain_name" {
+  type = string
+}
+
+####################################
 #       Basic auth
 ####################################
 variable "enable_basic_auth" {
-  type = bool
+  type    = bool
   default = false
 }
 

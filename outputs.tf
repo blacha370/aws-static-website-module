@@ -3,7 +3,7 @@ output "s3_bucket_name" {
 }
 
 output "cloudfront_domain_name" {
-  value = aws_cloudfront_distribution.static_website.domain_name
+  value = aws_route53_record.static_website.name
 }
 
 output "basic_auth_user" {
