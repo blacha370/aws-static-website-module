@@ -2,6 +2,7 @@
 ## Table of Contents
 - [Usage](#usage)
     - [Initial configuration](#initial-configuration)
+- [Resources](#resources)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
 
@@ -29,6 +30,21 @@ Update `bucket`, `dynamodb_table` and `region` in `terraform.tf` file, then init
 ```
 terraform init
 ```
+
+## Resources
+| Name | Type |
+|------|------|
+| archive_file.basic_auth | data source |
+| aws_caller_identity.current | data source |
+| aws_cloudfront_distribution.static_website | resource |
+| aws_cloudfront_origin_access_control.static_website | resource |
+| aws_iam_role.basic_auth | resource |
+| aws_lambda_function.basic_auth | resource |
+| aws_s3_bucket.static_website | resource |
+| aws_s3_bucket_policy.static | resource |
+| aws_s3_bucket_versioning.static | resource |
+| random_password.basic_auth_password | resource |
+| random_string.basic_auth_user | resource |
 
 ## Inputs
 
