@@ -23,15 +23,25 @@ resource "aws_cloudfront_distribution" "static_website" {
 
   custom_error_response {
     error_caching_min_ttl = 3600
-    error_code = 403
-    response_code = "200"
-    response_page_path = "/index.html"
+    error_code            = 403
+    response_code         = "200"
+    response_page_path    = "/index.html"
   }
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.prefix
+
+    dynamic "lambda_function_association" {
+      for_each = var.enable_basic_auth ? [""] : []
+
+      content {
+        event_type   = "viewer-request"
+        lambda_arn   = aws_lambda_function.basic_auth[0].qualified_arn
+        include_body = false
+      }
+    }
 
     forwarded_values {
       query_string = false
@@ -46,6 +56,7 @@ resource "aws_cloudfront_distribution" "static_website" {
     default_ttl            = 3600
     max_ttl                = 86400
   }
+
 
   price_class = "PriceClass_200"
 
