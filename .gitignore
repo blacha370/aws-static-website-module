@@ -30,3 +30,6 @@ override.tf.json
 
 # Ignore terraform.tfvars
 terraform.tfvars
+
+# Ignore .zip files
+*.zip
