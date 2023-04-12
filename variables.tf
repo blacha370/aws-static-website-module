@@ -33,3 +33,11 @@ variable "basic_auth_password" {
   type    = string
   default = ""
 }
+
+####################################
+#       S3
+####################################
+variable "enable_bucket_versioning" {
+  type    = bool
+  default = false
+}

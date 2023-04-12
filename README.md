@@ -60,6 +60,7 @@ terraform init
 | cloudfront_domain_name | Route53 record pointing to cloudfront | `string` | `null` | yes |
 | dns_zone | Existing dns zone name | `string` | `null` | yes |
 | enable_basic_auth | Controls if basic auth lambda should be created | `bool` | `"false"` | no |
+| enable_bucket_versioning | Controls S3 bucket versioning | `bool` | `"false"` | no |
 | project | Project name | `string` | `""` | yes |
 
 ## Outputs

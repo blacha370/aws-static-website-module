@@ -5,7 +5,7 @@ resource "aws_s3_bucket" "static_website" {
 resource "aws_s3_bucket_versioning" "static" {
   bucket = aws_s3_bucket.static_website.id
   versioning_configuration {
-    status = "Enabled"
+    status = var.enable_bucket_versioning ? "Enabled" : "Disabled"
   }
 }
 
