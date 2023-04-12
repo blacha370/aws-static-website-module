@@ -1,13 +1,15 @@
 # static-frontend-infrastructur
 ## Table of Contents
 - [Usage](#usage)
-    - [Initial configuration](#initial-configuration)
+    - [State configuration](#state-configuration)
+    - [Route53 configuration](#route53-configuration)
+    - [Working with multiple environments](#working-with-multiple-environments)
 - [Resources](#resources)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
 
 ## Usage
-### Initial Configuration
+### State Configuration
 
 Create state bucket and lock table.
 
@@ -29,6 +31,39 @@ Update `bucket`, `dynamodb_table` and `region` in `terraform.tf` file, then init
 
 ```
 terraform init
+```
+
+### Route53 configuration
+
+This module requires route53 zone to exist within your AWS account. Follow [Creating a public hosted zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html) tutorial if you don't have one.
+
+### Working with multiple environments
+
+For multiple environments use terraform workspace. 
+
+Create new environment/workspace.
+
+```
+terraform workspace new <environment>
+```
+
+Switch between environments/workspaces.
+
+```
+terraform workspace select <environment>
+```
+
+List existing environments/workspaces.
+
+```
+terraform workspace list
+```
+
+Create `.tfvars` files for each workspace, eg. `terraform.<workspace>.tfvars`, then include this file in terraform commands.
+
+```
+terraform plan -var-file=terraform.<workspace>.tfvars
+terraform apply -var-file=terraform.<workspace>.tfvars
 ```
 
 ## Resources
