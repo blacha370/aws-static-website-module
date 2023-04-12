@@ -6,17 +6,6 @@ variable "project" {
 }
 
 ####################################
-#       DNS
-####################################
-variable "dns_zone" {
-  type = string
-}
-
-variable "cloudfront_domain_name" {
-  type = string
-}
-
-####################################
 #       Basic auth
 ####################################
 variable "enable_basic_auth" {
@@ -32,4 +21,31 @@ variable "basic_auth_user" {
 variable "basic_auth_password" {
   type    = string
   default = ""
+}
+
+####################################
+#       Cloudfront
+####################################
+variable "cloudfront_404_file" {
+  type    = string
+  default = "/404.html"
+}
+
+variable "cloudfront_domain_name" {
+  type = string
+}
+
+####################################
+#       DNS
+####################################
+variable "dns_zone" {
+  type = string
+}
+
+####################################
+#       S3
+####################################
+variable "enable_bucket_versioning" {
+  type    = bool
+  default = false
 }
