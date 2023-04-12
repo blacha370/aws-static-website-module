@@ -58,7 +58,7 @@ terraform init
 | basic_auth_password | Password for basic auth lambda, random password will be created if this variable is empty | `string` | `""` | no |
 | basic_auth_user | Username for basic auth lambda, random string will be created if this variable is empty | `string` | `""` | no |
 | cloudfront_domain_name | Route53 record pointing to cloudfront | `string` | `null` | yes |
-| dns_zone | Existing dns zone name | `string` | `null` | yes |
+| dns_zone | Existing route53 zone name | `string` | `null` | yes |
 | enable_basic_auth | Controls if basic auth lambda should be created | `bool` | `"false"` | no |
 | enable_bucket_versioning | Controls S3 bucket versioning | `bool` | `"false"` | no |
 | project | Project name | `string` | `""` | yes |
