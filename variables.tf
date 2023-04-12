@@ -27,7 +27,7 @@ variable "basic_auth_password" {
 #       Cloudfront
 ####################################
 variable "cloudfront_404_file" {
-  type = string
+  type    = string
   default = "/404.html"
 }
 
