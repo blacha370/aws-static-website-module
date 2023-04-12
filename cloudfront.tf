@@ -25,9 +25,9 @@ resource "aws_cloudfront_distribution" "static_website" {
 
   custom_error_response {
     error_caching_min_ttl = 3600
-    error_code            = 403
+    error_code            = 404
     response_code         = "200"
-    response_page_path    = "/index.html"
+    response_page_path    = var.cloudfront_404_file
   }
 
   default_cache_behavior {
