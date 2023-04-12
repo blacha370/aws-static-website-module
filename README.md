@@ -60,8 +60,8 @@ terraform init
 | cloudfront_404_file | Custom 404 file, use `/index.html` if error should be resolved by app | `string` | `"/404.html"` | no |
 | cloudfront_domain_name | Route53 record pointing to cloudfront | `string` | `null` | yes |
 | dns_zone | Existing route53 zone name | `string` | `null` | yes |
-| enable_basic_auth | Controls if basic auth lambda should be created | `bool` | `"false"` | no |
-| enable_bucket_versioning | Controls S3 bucket versioning | `bool` | `"false"` | no |
+| enable_basic_auth | Controls if basic auth lambda should be created | `bool` | `false` | no |
+| enable_bucket_versioning | Controls S3 bucket versioning | `bool` | `false` | no |
 | project | Project name | `string` | `""` | yes |
 
 ## Outputs
