@@ -59,7 +59,7 @@ List existing environments/workspaces.
 terraform workspace list
 ```
 
-Create `.tfvars` files for each workspace, eg. `terraform.<workspace>.tfvars`, then include this file in terraform commands.
+Create `.tfvars` files for each workspace (check [example.tfvars](/example.tfvars)), eg. `terraform.<workspace>.tfvars`, then include this file in terraform commands.
 
 ```
 terraform plan -var-file=terraform.<workspace>.tfvars
