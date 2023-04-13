@@ -5,6 +5,10 @@ variable "project" {
   type = string
 }
 
+variable "environment" {
+  type = string
+}
+
 ####################################
 #       Basic auth
 ####################################
@@ -31,15 +35,16 @@ variable "cloudfront_404_file" {
   default = "/404.html"
 }
 
-variable "cloudfront_domain_name" {
+####################################
+#       Route53
+####################################
+variable "route53_zone_id" {
   type = string
 }
 
-####################################
-#       DNS
-####################################
-variable "dns_zone" {
-  type = string
+variable "route53_subdomain_prefix" {
+  type    = string
+  default = ""
 }
 
 ####################################

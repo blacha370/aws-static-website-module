@@ -17,7 +17,7 @@ resource "aws_cloudfront_distribution" "static_website" {
     origin_id                = local.prefix
   }
 
-  aliases = [var.cloudfront_domain_name]
+  aliases = [local.route53_cloudfront_record]
 
   enabled             = true
   is_ipv6_enabled     = true
