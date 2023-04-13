@@ -1,5 +1,6 @@
 # static-frontend-infrastructur
 ## Table of Contents
+- [Architecture diagram](#architecture-diagram)
 - [Usage](#usage)
     - [State configuration](#state-configuration)
     - [Route53 configuration](#route53-configuration)
@@ -7,6 +8,10 @@
 - [Resources](#resources)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
+
+## Architecture diagram
+
+![diagram](/docs/diagram.jpg)
 
 ## Usage
 ### State Configuration
