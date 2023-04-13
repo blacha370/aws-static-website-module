@@ -1,15 +1,3 @@
-data "archive_file" "basic_auth" {
-  count = var.enable_basic_auth ? 1 : 0
-
-  output_path = format("%s/basic-auth-lambda/lambda.zip", path.module)
-  type        = "zip"
-
-  source {
-    content  = templatefile(format("%s/basic-auth-lambda/index.js.tftpl", path.module), { username = local.basic_auth_user, password = local.basic_auth_password })
-    filename = "index.js"
-  }
-}
-
 resource "random_string" "basic_auth_user" {
   count = local.create_basic_auth_user ? 1 : 0
 

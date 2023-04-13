@@ -1,7 +1,7 @@
 resource "aws_acm_certificate" "static_website" {
   provider = aws.us-east-1
 
-  domain_name       = var.cloudfront_domain_name
+  domain_name       = local.route53_cloudfront_record
   validation_method = "DNS"
 
   lifecycle {

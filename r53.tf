@@ -1,7 +1,3 @@
-data "aws_route53_zone" "dns_zone" {
-  name = var.dns_zone
-}
-
 resource "aws_route53_record" "certificate" {
   for_each = {
     for dvo in aws_acm_certificate.static_website.domain_validation_options : dvo.domain_name => {
@@ -21,7 +17,7 @@ resource "aws_route53_record" "certificate" {
 
 resource "aws_route53_record" "static_website" {
   zone_id = data.aws_route53_zone.dns_zone.zone_id
-  name    = var.cloudfront_domain_name
+  name    = local.route53_cloudfront_record
   type    = "A"
 
   alias {

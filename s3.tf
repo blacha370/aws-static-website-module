@@ -1,8 +1,12 @@
 resource "aws_s3_bucket" "static_website" {
+  provider = aws.src
+
   bucket_prefix = local.prefix
 }
 
 resource "aws_s3_bucket_versioning" "static" {
+  provider = aws.src
+
   bucket = aws_s3_bucket.static_website.id
   versioning_configuration {
     status = var.enable_bucket_versioning ? "Enabled" : "Disabled"
@@ -10,6 +14,8 @@ resource "aws_s3_bucket_versioning" "static" {
 }
 
 resource "aws_s3_bucket_policy" "static" {
+  provider = aws.src
+
   bucket = aws_s3_bucket.static_website.id
   policy = jsonencode({
     Version : "2012-10-17",
