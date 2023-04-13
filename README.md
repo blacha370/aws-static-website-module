@@ -1,10 +1,7 @@
-# static-frontend-infrastructur
+# aws-static-website-module
 ## Table of Contents
 - [Architecture diagram](#architecture-diagram)
 - [Usage](#usage)
-    - [State configuration](#state-configuration)
-    - [Route53 configuration](#route53-configuration)
-    - [Working with multiple environments](#working-with-multiple-environments)
 - [Resources](#resources)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
@@ -14,62 +11,27 @@
 ![diagram](/docs/diagram.jpg)
 
 ## Usage
-### State Configuration
 
-Create state bucket and lock table.
+### Static website without basic auth
+```hcl
+module "static_website" {
+  source = "github.com/blacha370/aws-static-website-module"
 
+  providers = {
+    aws.src       = aws
+    aws.us-east-1 = aws.us-east-1
+  }
+
+  project     = "example"
+  environment = "example"
+
+  route53_zone_id = "ZONE_ID"
+}
 ```
-aws cloudformation deploy \
---template-file tfstate.yml \
---stack-name static-frontend-tfstate
-```
+### Examples:
 
-Get state bucket name and lock table name.
+- [Complete](https://github.com/blacha370/aws-static-website-module/tree/main/example) 
 
-```
-aws cloudformation describe-stacks \
---stack-name static-frontend-tfstate \
---query "Stacks[?StackName=='static-frontend-tfstate'].Outputs[]"
-```
-
-Update `bucket`, `dynamodb_table` and `region` in `terraform.tf` file, then init terraform.
-
-```
-terraform init
-```
-
-### Route53 configuration
-
-This module requires route53 zone to exist within your AWS account. Follow [Creating a public hosted zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html) tutorial if you don't have one.
-
-### Working with multiple environments
-
-For multiple environments use terraform workspace. 
-
-Create new environment/workspace.
-
-```
-terraform workspace new <environment>
-```
-
-Switch between environments/workspaces.
-
-```
-terraform workspace select <environment>
-```
-
-List existing environments/workspaces.
-
-```
-terraform workspace list
-```
-
-Create `.tfvars` files for each workspace (check [example.tfvars](/example.tfvars)), eg. `terraform.<workspace>.tfvars`, then include this file in terraform commands.
-
-```
-terraform plan -var-file=terraform.<workspace>.tfvars
-terraform apply -var-file=terraform.<workspace>.tfvars
-```
 
 ## Resources
 | Name | Type |
@@ -98,11 +60,12 @@ terraform apply -var-file=terraform.<workspace>.tfvars
 | basic_auth_password | Password for basic auth lambda, random password will be created if this variable is empty | `string` | `""` | no |
 | basic_auth_user | Username for basic auth lambda, random string will be created if this variable is empty | `string` | `""` | no |
 | cloudfront_404_file | Custom 404 file, use `/index.html` if error should be resolved by app | `string` | `"/404.html"` | no |
-| cloudfront_domain_name | Route53 record pointing to cloudfront | `string` | `null` | yes |
-| dns_zone | Existing route53 zone name | `string` | `null` | yes |
 | enable_basic_auth | Controls if basic auth lambda should be created | `bool` | `false` | no |
 | enable_bucket_versioning | Controls S3 bucket versioning | `bool` | `false` | no |
-| project | Project name | `string` | `""` | yes |
+| environment | Environment name | `string` | `null` | yes |
+| project | Project name | `string` | `null` | yes |
+| route53_subdomain_prefix | Cloudfront subdomain prefix | `string` | `""` | no |
+| route53_zone_id | Existing route53 zone id | `string` | `null` | yes |
 
 ## Outputs
 | Name | Description |
