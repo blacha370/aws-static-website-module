@@ -60,9 +60,13 @@ module "static_website" {
 | basic_auth_password | Password for basic auth lambda, random password will be created if this variable is empty | `string` | `""` | no |
 | basic_auth_user | Username for basic auth lambda, random string will be created if this variable is empty | `string` | `""` | no |
 | cloudfront_404_file | Custom 404 file, use `/index.html` if error should be resolved by app | `string` | `"/404.html"` | no |
+| default_ttl | Default ttl for Cloudfront cache | `number` | 3600 | no |
 | enable_basic_auth | Controls if basic auth lambda should be created | `bool` | `false` | no |
 | enable_bucket_versioning | Controls S3 bucket versioning | `bool` | `false` | no |
 | environment | Environment name | `string` | `null` | yes |
+| error_caching_min_ttl | Mimimum ttl for 404 response cache | `number` | 3600 | no |
+| min_ttl | Minimum ttl for Cloudfront cache | `number` | 0 | no |
+| max_ttl | Maximum ttl for Cloudfront cache | `number` | 86400 | no |
 | project | Project name | `string` | `null` | yes |
 | route53_subdomain_prefix | Cloudfront subdomain prefix | `string` | `""` | no |
 | route53_zone_id | Existing route53 zone id | `string` | `null` | yes |

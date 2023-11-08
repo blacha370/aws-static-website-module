@@ -35,6 +35,26 @@ variable "cloudfront_404_file" {
   default = "/404.html"
 }
 
+variable "default_ttl" {
+  type    = number
+  default = 3600
+}
+
+variable "error_caching_min_ttl" {
+  type    = number
+  default = 3600
+}
+
+variable "min_ttl" {
+  type    = number
+  default = 0
+}
+
+variable "max_ttl" {
+  type    = number
+  default = 86400
+}
+
 ####################################
 #       Route53
 ####################################
